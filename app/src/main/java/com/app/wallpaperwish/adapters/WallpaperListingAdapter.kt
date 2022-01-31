@@ -10,8 +10,9 @@ import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.app.wallpaperwish.R
 import com.squareup.picasso.Picasso
+import com.unsplash.pickerandroid.photopicker.data.UnsplashPhoto
 
-class WallpaperListingAdapter :RecyclerView.Adapter<WallpaperListingAdapter.ListingViewHolder>()   {
+class WallpaperListingAdapter (val photoslist: ArrayList<UnsplashPhoto>?) :RecyclerView.Adapter<WallpaperListingAdapter.ListingViewHolder>()   {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListingViewHolder {
@@ -26,11 +27,12 @@ class WallpaperListingAdapter :RecyclerView.Adapter<WallpaperListingAdapter.List
     override fun onBindViewHolder(holder: ListingViewHolder, position: Int) {
 
 
-        Picasso.get().load(R.drawable.dummy).into(holder.image)
+//        Picasso.get().load(R.drawable.dummy).into(holder.image)
+        Picasso.get().load(photoslist?.get(position)?.color).into(holder.image)
      }
 
     override fun getItemCount(): Int {
-        return 25
+        return photoslist!!.size
      }
 
     class ListingViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
